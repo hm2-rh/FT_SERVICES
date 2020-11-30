@@ -6,17 +6,15 @@
 #    By: hrhirha <hrhirha@student.1337.ma>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/20 09:36:33 by hrhirha           #+#    #+#              #
-#    Updated: 2020/11/21 09:33:15 by hrhirha          ###   ########.fr        #
+#    Updated: 2020/11/25 11:50:40 by hrhirha          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #!/bin/bash
 
 apk update && apk upgrade
-apk add nginx openrc openssl
-mkdir /run/openrc
-openrc
-touch /run/openrc/softlevel
+apk add nginx openssl
+mkdir /run/nginx/
 
 adduser -D -g 'www' www
 mkdir /www && chown -R www:www /var/lib/nginx && chown -R www:www /www
