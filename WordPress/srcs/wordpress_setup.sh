@@ -20,3 +20,6 @@ tar zxvf latest.tar.gz
 mv wordpress/* /www/
 rm -rf wordpress/ latest.tar.gz
 chown -R www:www /www/
+
+# rm -rf /etc/php7/php-fpm.d/www.conf
+# rm -rf /etc/php7/php.ini

@@ -1,13 +1,5 @@
 ---
 apiVersion: v1
-kind: Secret
-metadata:
-    name: mysql-pass
-type: opaque
-data:
-    password: YWRtaW4=
----
-apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
     name: mysql-pvc
@@ -15,10 +7,10 @@ metadata:
         app: mysql
 spec:
     accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
     resources:
         requests:
-            storage: 2Gi
+            storage: 5Gi
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -40,17 +32,11 @@ spec:
             - name: mysql
               image: mysql:1
               imagePullPolicy: Never
-              env:
-               - name: MYSQL_ROOT_PASSWORD
-                 valueFrom:
-                     secretKeyRef:
-                         name: mysql-pass
-                         key: password
               ports:
                 - containerPort: 3306
               volumeMounts:
                - name: mysql-pv
-                 mountPath: /.data
+                 mountPath: /var/lib/mysql
             volumes:
             - name: mysql-pv
               persistentVolumeClaim:
@@ -63,7 +49,7 @@ metadata:
     labels:
         app: mysql
 spec:
-    # clusterIP: None
+    clusterIP: 10.108.205.191
     selector:
         app: mysql
     ports:

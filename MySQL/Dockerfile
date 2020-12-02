@@ -15,6 +15,7 @@ FROM	alpine:3.12.1
 COPY	srcs/mysql_setup.sh /tmp/
 COPY	srcs/wordpress_db.sql /tmp/
 RUN		sh /tmp/mysql_setup.sh
+COPY    srcs/mariadb-server.cnf /etc/my.cnf.d/
 COPY	srcs/mysql_start.sh /tmp/
 
 ENTRYPOINT	["sh", "/tmp/mysql_start.sh"]

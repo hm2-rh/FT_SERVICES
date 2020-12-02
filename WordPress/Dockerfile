@@ -16,7 +16,10 @@ COPY	srcs/wordpress_setup.sh /tmp/
 RUN		sh /tmp/wordpress_setup.sh
 COPY	srcs/nginx.conf /etc/nginx/
 COPY	srcs/default.conf /etc/nginx/conf.d/
-# COPY	srcs/wp-config.php /www/
+COPY	srcs/wp-config.php /www/
+# COPY    srcs/www.conf /etc/php7/php-fpm.d/
+# COPY    srcs/php.ini /etc/php7/
+RUN     chown -R www:www /www/
 COPY	srcs/wordpress_start.sh /tmp
 
 ENTRYPOINT ["sh", "/tmp/wordpress_start.sh"]

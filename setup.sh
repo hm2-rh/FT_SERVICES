@@ -1,8 +1,9 @@
 #!/bin/bash
-
+minikube delete
 minikube start
 eval $(minikube -p minikube docker-env)
 
+# minikube ssh 'sudo mkdir /data/mysql; sudo chmod u+rwx /data/mysql'
 docker build -t nginx:1 Nginx/
 docker build -t mysql:1 MySQL/
 docker build -t wordpress:1 WordPress/
