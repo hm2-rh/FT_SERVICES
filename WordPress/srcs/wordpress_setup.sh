@@ -1,7 +1,7 @@
 #!/bin/sh
 
 apk -U upgrade
-apk add nginx openssl mysql mysql-client openrc wget
+apk add nginx openssl openrc wget
 adduser -D -g 'www' www
 mkdir /www && chown -R www:www /var/lib/nginx && chown -R www:www /www
 openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/wordpress.key -out /etc/ssl/certs/wordpress.crt -subj "/C=/ST=/L=/O=/OU=/CN="
@@ -20,6 +20,3 @@ tar zxvf latest.tar.gz
 mv wordpress/* /www/
 rm -rf wordpress/ latest.tar.gz
 chown -R www:www /www/
-
-# rm -rf /etc/php7/php-fpm.d/www.conf
-# rm -rf /etc/php7/php.ini

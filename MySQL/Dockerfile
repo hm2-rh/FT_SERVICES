@@ -12,9 +12,10 @@
 
 FROM	alpine:3.12.1
 
-COPY	srcs/mysql_setup.sh /tmp/
 COPY	srcs/wordpress_db.sql /tmp/
-RUN		sh /tmp/mysql_setup.sh
+RUN     apk -U upgrade
+RUN     apk add mysql mysql-client openrc
+RUN     rm -rf /etc/my.cnf.d/mariadb-server.cnf
 COPY    srcs/mariadb-server.cnf /etc/my.cnf.d/
 COPY	srcs/mysql_start.sh /tmp/
 

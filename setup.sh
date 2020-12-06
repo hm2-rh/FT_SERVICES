@@ -2,11 +2,13 @@
 minikube delete
 minikube start
 eval $(minikube -p minikube docker-env)
+minikube addons enable dashboard
 
 # minikube ssh 'sudo mkdir /data/mysql; sudo chmod u+rwx /data/mysql'
 docker build -t nginx:1 Nginx/
 docker build -t mysql:1 MySQL/
 docker build -t wordpress:1 WordPress/
+docker build -t phpmyadmin:1 PhpMyadmin/
 
 echo "Setting UP MetalLB"
 kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.5/manifests/namespace.yaml
@@ -18,3 +20,4 @@ echo "Creating Nginx Deployment(nginx-deploy) and Service(nginx-svc)"
 kubectl apply -f Nginx/nginx.yaml
 kubectl apply -f MySQL/mysql.yaml
 kubectl apply -f WordPress/wordpress.yaml
+kubectl apply -f PhpMyadmin/phpmyadmin.yaml

@@ -27,14 +27,13 @@ kind: Service
 metadata:
     name: wordpress-svc
     annotations:
-        metallb.universe.tf/allow-shared-ip: 192.168.99.95
+        metallb.universe.tf/allow-shared-ip: shared
     labels:
         app: wordpress
 spec:
     selector:
         app: wordpress
     type: LoadBalancer
-    loadBalancerIP: 192.168.99.95
     ports:
     - port: 5050
       protocol: TCP

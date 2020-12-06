@@ -5,7 +5,6 @@ openrc; touch /run/openrc/softlevel
 
 echo "Creating DATABASES"
 chown -R mysql: /var/lib/mysql
-# chown -R mysql: /mnt/
 /etc/init.d/mariadb start
 mysql -e "CREATE DATABASE wordpress_db;"
 # mysql -e "CREATE DATABASE phpmyadmin_db;"
@@ -13,8 +12,9 @@ mysql -e "CREATE DATABASE wordpress_db;"
 # mysql -e "GRANT ALL PRIVILEGES ON phpmyadmin_db.* TO 'pma_admin'@% IDENTIFIED BY 'pma_admin';FLUSH PRIVILEGES;"
 mysql -e "GRANT ALL PRIVILEGES ON *.* TO 'admin'@'%' IDENTIFIED BY 'admin'; FLUSH PRIVILEGES;"
 
-# mysql -e "USE wordpress_db;"
-# mysql wordpress_db < /tmp/wordpress_db.sql
+mysql -e "USE wordpress_db;"
+mysql wordpress_db < /tmp/wordpress_db.sql
+/etc/init.d/mariadb stop
 
 /usr/bin/mysqld_safe --datadir='/var/lib/mysql'
 sh

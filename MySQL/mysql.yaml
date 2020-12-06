@@ -1,4 +1,15 @@
 ---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+    name: mysql-sc
+    labels:
+        app: mysql
+provisioner: k8s.io/minikube-hostpath
+reclaimPolicy: Retain
+volumeBindingMode: Immediate
+allowVolumeExpansion: true
+---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -6,11 +17,12 @@ metadata:
     labels:
         app: mysql
 spec:
+    storageClassName: mysql-sc
     accessModes:
-    - ReadWriteMany
+    - ReadWriteOnce
     resources:
         requests:
-            storage: 5Gi
+            storage: 10Gi
 ---
 apiVersion: apps/v1
 kind: Deployment
