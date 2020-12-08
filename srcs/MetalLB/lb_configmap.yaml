@@ -1,0 +1,24 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    configmap.yaml                                     :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: hrhirha <hrhirha@student.1337.ma>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2020/11/20 19:01:23 by hrhirha           #+#    #+#              #
+#    Updated: 2020/11/29 17:54:49 by hrhirha          ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+    namespace: metallb-system
+    name: config
+data:
+    config: |
+        address-pools:
+        - name: default
+          protocol: layer2
+          addresses:
+            - 192.168.99.95-192.168.99.95
