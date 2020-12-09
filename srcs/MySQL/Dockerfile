@@ -13,6 +13,7 @@
 FROM	alpine:3.12.1
 
 COPY	srcs/wordpress_db.sql /tmp/
+COPY    srcs/phpmyadmin_db.sql /tmp/
 RUN     apk -U upgrade
 RUN     apk add mysql mysql-client openrc
 RUN     rm -rf /etc/my.cnf.d/mariadb-server.cnf
