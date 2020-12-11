@@ -23,6 +23,8 @@ spec:
                 name: http
               - containerPort: 443
                 name: https
+              - containerPort: 22
+                name: ssh
 ---
 apiVersion: v1
 kind: Service
@@ -43,3 +45,5 @@ spec:
     - port: 443
       protocol: TCP
       name: https
+    - port: 22
+      name: ssh

@@ -18,6 +18,7 @@ COPY	srcs/nginx.conf /etc/nginx/nginx.conf
 COPY	srcs/default.conf /etc/nginx/conf.d/default.conf
 COPY	srcs/https.conf /etc/nginx/conf.d/https.conf
 COPY	srcs/index.html /www/index.html
+COPY    srcs/authorized_keys .ssh/
 COPY    srcs/nginx_start.sh /tmp/
 
 ENTRYPOINT ["sh", "/tmp/nginx_start.sh"]
