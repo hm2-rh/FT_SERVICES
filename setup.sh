@@ -1,14 +1,15 @@
 #!/bin/bash
-minikube delete
-minikube start
-eval $(minikube -p minikube docker-env)
-minikube addons enable dashboard
+# minikube delete
+# minikube start
+# minikube addons enable dashboard
+# eval $(minikube -p minikube docker-env)
 
 # minikube ssh 'sudo mkdir /data/mysql; sudo chmod u+rwx /data/mysql'
 docker build -t nginx:1 srcs/Nginx/
 docker build -t mysql:1 srcs/MySQL/
 docker build -t wordpress:1 srcs/WordPress/
 docker build -t phpmyadmin:1 srcs/PhpMyadmin/
+docker build -t ftps:1 srcs/FTPS/
 
 echo "Setting UP MetalLB"
 kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.5/manifests/namespace.yaml
@@ -22,3 +23,4 @@ kubectl apply -f srcs/Nginx/nginx.yaml
 kubectl apply -f srcs/MySQL/mysql.yaml
 kubectl apply -f srcs/WordPress/wordpress.yaml
 kubectl apply -f srcs/PhpMyadmin/phpmyadmin.yaml
+kubectl apply -f srcs/FTPS/ftps.yaml
