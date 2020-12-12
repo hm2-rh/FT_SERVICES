@@ -7,7 +7,6 @@ mkdir /www && chown -R www:www /var/lib/nginx && chown -R www:www /www
 openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/wordpress.key -out /etc/ssl/certs/wordpress.crt -subj "/C=/ST=/L=/O=/OU=/CN="
 
 mkdir /run/nginx
-
 mv /etc/nginx/nginx.conf /etc/nginx/nginx.conf.origin
 rm /etc/nginx/conf.d/default.conf
 
@@ -18,5 +17,6 @@ openrc; touch /run/openrc/softlevel
 wget http://wordpress.org/latest.tar.gz
 tar zxvf latest.tar.gz
 mv wordpress/* /www/
-rm -rf wordpress/ latest.tar.gz
 chown -R www:www /www/
+
+rm -rf wordpress/ latest.tar.gz

@@ -16,7 +16,6 @@ declare(strict_types=1);
  * cookie. Needs to be 32 chars long.
  */
 $cfg['blowfish_secret'] = 'KYX-{dh1zT.lm;NI3z=Ah0mLVRQLC:em'; /* YOU MUST FILL IN THIS FOR COOKIE AUTH! */
-
 /**
  * Servers configuration
  */

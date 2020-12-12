@@ -1,10 +1,9 @@
 #!/bin/bash
-# minikube delete
-# minikube start
-# minikube addons enable dashboard
-# eval $(minikube -p minikube docker-env)
+minikube delete
+minikube start
+minikube addons enable dashboard
+eval $(minikube -p minikube docker-env)
 
-# minikube ssh 'sudo mkdir /data/mysql; sudo chmod u+rwx /data/mysql'
 docker build -t nginx:1 srcs/Nginx/
 docker build -t mysql:1 srcs/MySQL/
 docker build -t wordpress:1 srcs/WordPress/
