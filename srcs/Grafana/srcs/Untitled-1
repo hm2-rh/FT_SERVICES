@@ -1,0 +1,8 @@
+
+install influxDB
+wget https://dl.influxdata.com/influxdb/releases/influxdb2-2.0.3_linux_amd64.tar.gz
+tar xvfz influxdb2-2.0.3_linux_amd64.tar.gz
+
+install telegraf
+wget https://dl.influxdata.com/telegraf/releases/telegraf-1.16.3_linux_amd64.tar.gz
+tar xf telegraf-1.16.3_linux_amd64.tar.gz

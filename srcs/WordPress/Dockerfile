@@ -18,7 +18,7 @@ RUN		sh /tmp/wordpress_setup.sh
 COPY	srcs/nginx.conf /etc/nginx/
 COPY	srcs/default.conf /etc/nginx/conf.d/
 COPY	srcs/wp-config.php /www/
-# RUN     chown -R www:www /www/
+COPY    srcs/telegraf.conf /etc/
 COPY	srcs/wordpress_start.sh /tmp
 
 ENTRYPOINT ["sh", "/tmp/wordpress_start.sh"]

@@ -12,8 +12,9 @@
 
 #!/bin/sh
 
-apk update && apk upgrade
-apk add nginx openssl openssh openrc
+echo "http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories
+apk -U upgrade
+apk add nginx openssl openssh openrc telegraf
 
 openrc; touch /run/openrc/softlevel
 

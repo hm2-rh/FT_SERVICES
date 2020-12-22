@@ -17,5 +17,5 @@ mysql wordpress_db < /tmp/wordpress_db.sql
 mysql phpmyadmin_db < /tmp/phpmyadmin_db.sql
 /etc/init.d/mariadb stop
 
+/etc/init.d/telegraf start
 /usr/bin/mysqld_safe --datadir='/var/lib/mysql'
-sh
