@@ -1,6 +1,7 @@
 #!/bin/bash
 minikube delete
 minikube start
+minikube addons enable metrics-server
 minikube addons enable dashboard
 eval $(minikube -p minikube docker-env)
 
@@ -28,5 +29,5 @@ kubectl apply -f srcs/FTPS/ftps.yaml
 kubectl apply -f srcs/Grafana/grafana.yaml
 kubectl apply -f srcs/InfluxDB/influxdb.yaml
 
-sleep 5
-minikube dashboard &; clear
+sleep 10
+minikube dashboard &
