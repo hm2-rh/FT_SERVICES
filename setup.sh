@@ -1,4 +1,5 @@
 #!/bin/bash
+
 minikube delete
 minikube start
 minikube addons enable metrics-server

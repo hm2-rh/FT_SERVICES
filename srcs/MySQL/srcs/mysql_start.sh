@@ -18,4 +18,13 @@ mysql phpmyadmin_db < /tmp/phpmyadmin_db.sql
 /etc/init.d/mariadb stop
 
 /etc/init.d/telegraf start
-/usr/bin/mysqld_safe --datadir='/var/lib/mysql'
+# /usr/bin/mysqld_safe --datadir='/var/lib/mysql'
+/etc/init.d/mariadb start
+while :
+do
+    if [ "$(rc-status | grep mariadb | awk {'print $3'})" != "started" ]; then
+        break
+    elif [ "$(rc-status | grep telegraf | awk {'print $3'})" != "started" ]; then
+        break
+    fi
+done
