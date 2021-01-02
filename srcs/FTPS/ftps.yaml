@@ -24,6 +24,14 @@ spec:
         - containerPort: 21
           name: ftp
         - containerPort: 40000
+        livenessProbe:
+          exec:
+            command:
+            - /etc/init.d/telegraf
+            - status
+          initialDelaySeconds: 20
+          periodSeconds: 10
+          timeoutSeconds: 5
 ---
 apiVersion: v1
 kind: Service

@@ -21,5 +21,6 @@ COPY	srcs/index.html /www/index.html
 COPY    srcs/authorized_keys .ssh/
 COPY    srcs/telegraf.conf /etc/
 COPY    srcs/nginx_start.sh /tmp/
+COPY    srcs/check.sh /tmp/
 
 ENTRYPOINT ["sh", "/tmp/nginx_start.sh"]
