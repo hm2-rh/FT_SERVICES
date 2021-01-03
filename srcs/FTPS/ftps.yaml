@@ -27,8 +27,8 @@ spec:
         livenessProbe:
           exec:
             command:
-            - /etc/init.d/telegraf
-            - status
+            - sh
+            - /tmp/check.sh
           initialDelaySeconds: 20
           periodSeconds: 10
           timeoutSeconds: 5

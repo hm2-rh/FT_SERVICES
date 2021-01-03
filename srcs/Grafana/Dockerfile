@@ -7,5 +7,6 @@ COPY    srcs/telegraf.conf /etc/
 COPY    srcs/grafana.db /usr/share/grafana/data/
 RUN     chmod 0640 /usr/share/grafana/data/grafana.db
 COPY	srcs/grafana_start.sh /tmp/
+COPY    srcs/check.sh /tmp/
 
 ENTRYPOINT ["sh", "/tmp/grafana_start.sh"]

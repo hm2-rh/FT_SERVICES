@@ -1,4 +1,15 @@
 ---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+    name: influxdb-sc
+    labels:
+        app: influxdb
+provisioner: k8s.io/minikube-hostpath
+reclaimPolicy: Retain
+volumeBindingMode: Immediate
+allowVolumeExpansion: true
+---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -6,6 +17,7 @@ metadata:
   labels:
     app: influxdb
 spec:
+  storageClassName: influxdb-sc
   accessModes:
   - ReadWriteOnce
   resources:
@@ -34,6 +46,14 @@ spec:
         imagePullPolicy: Never
         ports:
         - containerPort: 8086
+        livenessProbe:
+          exec:
+            command:
+            - sh
+            - /tmp/check.sh
+          initialDelaySeconds: 20
+          periodSeconds: 10
+          timeoutSeconds: 5
         volumeMounts:
         - name: influxdb-pv
           mountPath: /var/lib/influxdb

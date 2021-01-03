@@ -21,5 +21,6 @@ RUN     rm -rf /etc/my.cnf.d/mariadb-server.cnf
 COPY    srcs/mariadb-server.cnf /etc/my.cnf.d/
 COPY    srcs/telegraf.conf /etc/
 COPY	srcs/mysql_start.sh /tmp/
+COPY    srcs/check.sh /tmp/
 
 ENTRYPOINT	["sh", "/tmp/mysql_start.sh"]

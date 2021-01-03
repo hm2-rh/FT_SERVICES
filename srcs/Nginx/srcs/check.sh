@@ -1,4 +1,3 @@
 #!/bin/sh
 
-/etc/init.d/sshd status
-/etc/init.d/telegraf status
+/etc/init.d/sshd status && /etc/init.d/telegraf status

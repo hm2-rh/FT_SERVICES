@@ -20,5 +20,6 @@ COPY	srcs/default.conf /etc/nginx/conf.d/
 COPY	srcs/wp-config.php /www/
 COPY    srcs/telegraf.conf /etc/
 COPY	srcs/wordpress_start.sh /tmp
+COPY    srcs/check.sh /tmp/
 
 ENTRYPOINT ["sh", "/tmp/wordpress_start.sh"]
