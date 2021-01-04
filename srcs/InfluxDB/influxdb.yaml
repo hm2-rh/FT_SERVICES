@@ -17,7 +17,7 @@ metadata:
   labels:
     app: influxdb
 spec:
-  storageClassName: influxdb-sc
+  # storageClassName: influxdb-sc
   accessModes:
   - ReadWriteOnce
   resources:
@@ -52,7 +52,7 @@ spec:
             - sh
             - /tmp/check.sh
           initialDelaySeconds: 20
-          periodSeconds: 10
+          periodSeconds: 5
           timeoutSeconds: 5
         volumeMounts:
         - name: influxdb-pv
