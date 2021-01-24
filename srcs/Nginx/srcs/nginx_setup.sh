@@ -27,6 +27,8 @@ rm -rf /etc/nginx/conf.d/default.conf
 
 mkdir .ssh
 chown -R www:www /etc/ssh; chown -R www:www .ssh
-adduser -D admin -G root
-echo "admin:admin" >> admin_pass
-chpasswd <admin_pass; rm admin_pass
+apk add sudo
+addgroup sudo
+echo "%sudo ALL=(ALL) ALL" >> /etc/sudoers
+adduser -D admin -G sudo
+echo "admin:admin" | chpasswd

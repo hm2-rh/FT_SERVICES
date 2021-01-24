@@ -3,10 +3,10 @@
 echo "Starting Minikube"
 
 minikube delete
-minikube start
-# minikube addons enable metrics-server
+minikube start --driver=virtualbox
 minikube addons enable dashboard
 eval $(minikube -p minikube docker-env)
+docker login -u fapefin766 -p fapefin766@serohiv.com
 
 echo "Building images"
 docker build -t nginx:1 srcs/Nginx/
@@ -18,8 +18,10 @@ docker build -t grafana:1 srcs/Grafana/
 docker build -t influxdb:1 srcs/InfluxDB
 
 echo "Setting up Load Balancer"
-kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.5/manifests/namespace.yaml
-kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.5/manifests/metallb.yaml
+kubectl apply -f srcs/MetalLB/namespace.yaml
+kubectl apply -f srcs/MetalLB/metallb.yaml
+# kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.5/manifests/namespace.yaml
+# kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.5/manifests/metallb.yaml
 kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)"
 kubectl apply -f  srcs/MetalLB/lb_configmap.yaml
 
@@ -32,5 +34,6 @@ kubectl apply -f srcs/FTPS/ftps.yaml
 kubectl apply -f srcs/Grafana/grafana.yaml
 kubectl apply -f srcs/InfluxDB/influxdb.yaml
 
+ssh-keygen -R 192.168.99.95
 sleep 10
 minikube dashboard &

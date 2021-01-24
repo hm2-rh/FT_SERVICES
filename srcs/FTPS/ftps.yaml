@@ -5,7 +5,6 @@ metadata:
   name: ftps-deploy
   labels:
     app: ftps
-  
 spec:
   selector:
     matchLabels:
